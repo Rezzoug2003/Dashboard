@@ -2,14 +2,14 @@ import { ImageOutlined } from "@mui/icons-material";
 import React from "react";
 import "./NavBar.scss";
 import flag from "../../assets/algiria.jpg";
-import logo from "../../assets/map.png";
+import logo from "../../assets/Logo.png";
 import adminImage from "../../assets/pngtree-user-vector-avatar-png-image_1541962.jpeg";
 import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
 
 export const NavBar = () => {
   return (
     <div className="navbar">
-      <div className="container">
+      <div className="container-fluid">
         <div className="logo">
           <img src={logo} alt="" />
         </div>

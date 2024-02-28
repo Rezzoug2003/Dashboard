@@ -5,13 +5,13 @@ export const NavPages = () => {
   return (
     <div className="NavPages">
       <div className="container">
-        <Link to={"/"} className="link">
+        <Link to={"/dashboard"} className="link">
           <span>Dashboard</span>
         </Link>
-        <Link to={"/customers"} className="link">
+        <Link to={"/dashboard/customers"} className="link">
           <span>Customers</span>
         </Link>
-        <Link to={"/drivers"} className="link">
+        <Link to={"/dashboard/drivers"} className="link">
           <span>Drivers</span>
         </Link>
       </div>

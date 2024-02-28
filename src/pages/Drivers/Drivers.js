@@ -1,5 +1,6 @@
-import React from 'react'
-import './drivers.scss'
+import React from "react";
+import { useState } from "react";
+import "./drivers.scss";
 import driversImager from "../../assets/8583437.png";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
@@ -8,6 +9,41 @@ import SearchIcon from "@mui/icons-material/Search";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 export const Drivers = () => {
+  let [list, setList] = useState([
+    {
+      number: 0,
+      userName: "Younes",
+      email: "byounes.staiv@gmail.com",
+      phone: "0794385793",
+    },
+    {
+      number: 1,
+      userName: "farouk",
+      email: "farouk.houssem@gmail.com",
+      phone: "0676896524",
+    },
+  ]);
+  let [realData, setRealData] = useState(list);
+
+  let handelDelete = (i) => {
+    let newList = list.filter((v) => v.number !== i);
+    let count = 0;
+    newList.forEach((value) => {
+      value.number = count;
+      count++;
+    });
+    setList(newList);
+    setRealData(newList);
+  };
+  let handelChange = (e) => {
+    let filtredData = realData.filter(
+      (value) =>
+        value.userName.toLocaleLowerCase().includes(e.target.value) ||
+        value.email.toLocaleLowerCase().includes(e.target.value) ||
+        value.phone.toLocaleLowerCase().includes(e.target.value)
+    );
+    setList(filtredData);
+  };
   return (
     <div className="Drivers">
       <div className="container">
@@ -22,7 +58,11 @@ export const Drivers = () => {
             <Button>Add</Button>
           </Link>
           <div className="search">
-            <input type="text" placeholder="searsh" />
+            <input
+              type="text"
+              placeholder="searsh"
+              onChange={(e) => handelChange(e)}
+            />
             <SearchIcon />
           </div>
         </div>
@@ -35,143 +75,25 @@ export const Drivers = () => {
               <th>Phone</th>
               <th>Action</th>
             </tr>
-            <tr>
-              <td>1</td>
-              <td>Bial Rezzoug</td>
-              <td>BialRezzoug@gmail.com</td>
-              <td>0663412941</td>
-              <td>
-                <Link to={"/driverUpdate"}>
-                  <button>
-                  <EditIcon />
-                </button>
-                </Link>
-                
-                <button>
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Bial Rezzoug</td>
-              <td>BialRezzoug@gmail.com</td>
-              <td>0663412941</td>
-              <td>
-                <Link to={"/driverUpdate"}>
-                  <button>
-                  <EditIcon />
-                </button>
-                </Link>
-                
-                <button>
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Bial Rezzoug</td>
-              <td>BialRezzoug@gmail.com</td>
-              <td>0663412941</td>
-              <td>
-                <Link to={"/driverUpdate"}>
-                  <button>
-                  <EditIcon />
-                </button>
-                </Link>
-                
-                <button>
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Bial Rezzoug</td>
-              <td>BialRezzoug@gmail.com</td>
-              <td>0663412941</td>
-              <td>
-                <Link to={"/driverUpdate"}>
-                  <button>
-                  <EditIcon />
-                </button>
-                </Link>
-                
-                <button>
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Bial Rezzoug</td>
-              <td>BialRezzoug@gmail.com</td>
-              <td>0663412941</td>
-              <td>
-                <Link to={"/driverUpdate"}>
-                  <button>
-                  <EditIcon />
-                </button>
-                </Link>
-                
-                <button>
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Bial Rezzoug</td>
-              <td>BialRezzoug@gmail.com</td>
-              <td>0663412941</td>
-              <td>
-                <Link to={"/driverUpdate"}>
-                  <button>
-                  <EditIcon />
-                </button>
-                </Link>
-                
-                <button>
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Bial Rezzoug</td>
-              <td>BialRezzoug@gmail.com</td>
-              <td>0663412941</td>
-              <td>
-                <Link to={"/driverUpdate"}>
-                  <button>
-                  <EditIcon />
-                </button>
-                </Link>
-                
-                <button>
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>1</td>
-              <td>Bial Rezzoug</td>
-              <td>BialRezzoug@gmail.com</td>
-              <td>0663412941</td>
-              <td>
-                <Link to={"/driverUpdate"}>
-                  <button>
-                  <EditIcon />
-                </button>
-                </Link>
-                
-                <button>
-                  <DeleteIcon />
-                </button>
-              </td>
-            </tr>
-           
+            {list.map((value, index) => (
+              <tr key={index}>
+                <td>{value.number}</td>
+                <td>{value.userName}</td>
+                <td>{value.email}</td>
+                <td>{value.phone}</td>
+                <td>
+                  <Link to={"/dashboard/driverUpdate"}>
+                    <button>
+                      <EditIcon />
+                    </button>
+                  </Link>
+
+                  <button onClick={() => handelDelete(index)}>
+                    <DeleteIcon />
+                  </button>
+                </td>
+              </tr>
+            ))}
           </table>
         </div>
         <div className="Pagenation">
@@ -197,4 +119,4 @@ export const Drivers = () => {
       </div>
     </div>
   );
-}
+};

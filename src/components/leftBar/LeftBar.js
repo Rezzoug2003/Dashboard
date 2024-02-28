@@ -11,17 +11,20 @@ export const LeftBar = () => {
   
   return (
     <div className="LeftBar">
-      <Link to="/" className="link">
-        <div className={location.pathname === "/" ? "item active" : "item"}>
+      <Link to="/dashboard" className="link">
+        <div
+          className={
+            location.pathname === "/dashboard" ? "item active" : "item"
+          }>
           <img src={dashboardIamge} alt="" />
           <span>dashboard</span>
         </div>
       </Link>
-      <Link to="/customers" className="link">
+      <Link to="/dashboard/customers" className="link">
         <div
           className={
-            location.pathname === "/customers" ||
-            location.pathname === "/customerUpdate"
+            location.pathname === "/dashboard/customers" ||
+            location.pathname === "/dashboard/customerUpdate"
               ? "item active"
               : "item"
           }>
@@ -29,10 +32,11 @@ export const LeftBar = () => {
           <span>customers</span>
         </div>
       </Link>
-      <Link to="/drivers" className="link">
+      <Link to="/dashboard/drivers" className="link">
         <div
           className={
-            location.pathname === "/drivers" || location.pathname === "/driverUpdate"
+            location.pathname === "/dashboard/drivers" ||
+            location.pathname === "/dashboard/driverUpdate"
               ? "item active"
               : "item"
           }>

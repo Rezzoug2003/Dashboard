@@ -14,6 +14,7 @@ import { Drivers } from './pages/Drivers/Drivers';
 import { CustomerUpdate } from './pages/customerUpdate/CustomerUpdate';
 import { DriversUpdate } from './pages/driversUpdate/DriversUpdate';
 import { NavPages } from './components/NavPages/NavPages';
+import Login from "./pages/Login/Login"
 
 function App() {
   const Layout = () => {
@@ -32,36 +33,36 @@ function App() {
   };
   const router = createBrowserRouter([
     {
-      path: '/',
+      path: "/",
+      element: <Login />,
+    },
+    {
+      path: "/dashboard",
       element: <Layout />,
       children: [
         {
-          path: "/",
-          element: <Dashboard/>
+          path: "/dashboard",
+          element: <Dashboard />,
         },
         {
-          path: "/customers",
-          element: <Customer/>
-        }
-        ,
+          path: "/dashboard/customers",
+          element: <Customer />,
+        },
         {
-          path: "/drivers",
-          element: <Drivers/>
-        }
-        ,
+          path: "/dashboard/drivers",
+          element: <Drivers />,
+        },
         {
-          path: "/customerUpdate",
-          element: <CustomerUpdate/>
-        }
-        ,
+          path: "/dashboard/customerUpdate",
+          element: <CustomerUpdate />,
+        },
         {
-          path: "/driverUpdate",
-          element: <DriversUpdate/>
-        }
-      ]
-        
-      
-    }])
+          path: "/dashboard/driverUpdate",
+          element: <DriversUpdate />,
+        },
+      ],
+    },
+  ]);
   return (
     <div className="App">
       <RouterProvider router={router} />
